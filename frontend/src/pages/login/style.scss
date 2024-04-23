@@ -1,0 +1,26 @@
+.login{
+    @apply  h-screen bg-gray-50 flex flex-col justify-center;
+   
+    .login-Container{
+        @apply max-w-[40%] w-[30%] py-10  px-10 mx-auto bg-white min-h-fit shadow-sm;
+
+        h2{
+            @apply text-center text-3xl font-extrabold text-gray-900;
+        }
+        .form{
+            @apply mt-8 flex flex-col gap-4;
+           
+            .forgotPassword-wrapper{
+                @apply flex justify-between ;
+
+                .remember-me{
+                @apply flex gap-1 cursor-pointer text-sm text-gray-900 items-center ;
+                .checkbox{
+                    @apply cursor-pointer h-10 w-4 border-gray-300 rounded;
+                }
+
+                }
+            }
+        }
+    }
+}

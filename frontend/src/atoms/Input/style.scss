@@ -3,9 +3,12 @@
         @apply text-gray-700 text-sm font-medium block;
     }
     .input-container{
-            @apply w-full overflow-hidden ; 
+            @apply w-full overflow-hidden relative mt-2; 
         input{
             @apply placeholder:text-gray-700 border rounded-md outline-none w-full px-3 py-2 border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-blue-500;
+        }
+        .eye-icon{
+            @apply absolute right-2 top-3 cursor-pointer;
         }
     }
    
