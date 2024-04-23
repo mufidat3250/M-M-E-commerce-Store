@@ -9,7 +9,6 @@ const Login = () => {
   const [isVisible, setIsVisible] = useState(false);
   const name = useField('text')
   const password = useField('password')
-  
   const handleVisibility = () => {
     setIsVisible(!isVisible);
   };
@@ -24,8 +23,7 @@ const Login = () => {
             placeholder=""
             value={name.input}
             label={"Full Name"}
-            onChange={name.handleChange}
-           
+            onChange={name.handleChange}           
           />
           <Input
             onEyeOpen={handleVisibility}
@@ -41,10 +39,13 @@ const Login = () => {
                 <input type="checkbox" className="checkbox" id="remember-me" />
                 <label htmlFor ='remember-me'>Remember me</label>
             </div>
-            <p>Forget your Password?</p>
+            <p className="forgot-password">Forget your Password?</p>
           </div>
          <div>
             <Button title="Submit" otherClass=""/>
+         </div>
+         <div>
+          <p className="text-gray-900 mt-2">Don't have an account? <span className="text-blue-600 text-base cursor-pointer">SignUp</span></p>
          </div>
         </div>
       </div>

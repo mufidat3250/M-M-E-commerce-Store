@@ -1,24 +1,27 @@
 .login{
-    @apply  h-screen bg-gray-50 flex flex-col justify-center;
+    @apply  h-screen bg-gray-50 flex items-center flex-col justify-center w-full;
    
     .login-Container{
-        @apply max-w-[40%] w-[30%] py-10  px-10 mx-auto bg-white min-h-fit shadow-sm;
+        @apply py-10 w-full md:w-[70%] lg:max-w-[50%] lg:w-[30rem] mx-auto px-10 bg-white min-h-fit shadow-sm rounded-md;
 
         h2{
-            @apply text-center text-3xl font-extrabold text-gray-900;
+            @apply text-center  sm:text-2xl md:text-3xl font-extrabold text-gray-900;
         }
         .form{
             @apply mt-8 flex flex-col gap-4;
            
             .forgotPassword-wrapper{
-                @apply flex justify-between ;
+                @apply flex justify-between items-center;
 
                 .remember-me{
-                @apply flex gap-1 cursor-pointer text-sm text-gray-900 items-center ;
+                @apply flex gap-1 cursor-pointer text-[12px] sm:text-sm text-gray-900 items-center ;
                 .checkbox{
                     @apply cursor-pointer h-10 w-4 border-gray-300 rounded;
                 }
 
+                }
+                .forgot-password{
+                    @apply text-blue-600 cursor-pointer text-[12px] md:text-sm lg:text-base;
                 }
             }
         }

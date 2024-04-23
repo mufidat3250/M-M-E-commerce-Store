@@ -7,7 +7,7 @@ interface Iinput {
   placeholder: string;
   value: string;
   label: string;
-  isVisible: boolean;
+  isVisible?: boolean;
   onEyeOpen?: () => void;
   onChange: (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
