@@ -59,14 +59,4 @@ userSchema.set('toJSON', {
       delete returnedObject.__v
     }
   })
-
-
-
-  userSchema.method.createJWT = function () {
-    return JWT.sign({userId:this.id, name:this.name}, process.env.JWTPASSWORD, {expiresIn: '60m'})
-  }
-  userSchema.methods.comparePassword = async function (candidatePassword:string){
-    return await bcrypt.compare(candidatePassword, this.password)
- }
-
   module.exports = mongoose.model('User', userSchema)
