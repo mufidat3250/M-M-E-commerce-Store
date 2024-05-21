@@ -3,6 +3,7 @@ import Input from "../../atoms/Input";
 import "./style.scss";
 import Button from "../../atoms/Button";
 import useField from "../../hooks/useField";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   
@@ -45,7 +46,7 @@ const Login = () => {
             <Button title="Submit" otherClass=""/>
          </div>
          <div>
-          <p className="text-gray-900 mt-2">Don't have an account? <span className="text-blue-600 text-base cursor-pointer">SignUp</span></p>
+          <p className="text-gray-900 mt-2">Don't have an account? <Link to={'/signUp'} className="text-blue-600 text-base cursor-pointer">Sign Up</Link></p>
          </div>
         </div>
       </div>

@@ -3,24 +3,46 @@ import Input from '../../atoms/Input'
 import Button from '../../atoms/Button'
 import useField from '../../hooks/useField'
 import { useState } from 'react'
-import { RxAvatar } from "react-icons/rx";
+import userServices from '../../services/user'
+// import { RxAvatar } from "react-icons/rx";
+import { Link } from 'react-router-dom'
 const SignUp = () => {
   const email = useField('email')
   const name = useField('text')
   const password = useField('password')
   const [isVisible, setIsVisible] = useState(false)
-  const [avatar, setAvatar] = useState(null)
+  // const [avatar, setAvatar] = useState(null)
   const handleVisibility = () => {
     setIsVisible(!isVisible);
   };
 
-  const handleFileUpload = (e) => {
-    setAvatar(e?.target?.files[0])
+  const handleFileUpload = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files
+    if(file){
+      // setAvatar(file[0])
+      console.log('file uploaded')
+    }
   }
   
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('i am clicked')
+    console.log(email, name, password)
+
+    const newUser = {
+      email:email.input,
+      name: name.input,
+      password:password.input,
+      // file: avatar
+    }
+   try {
+    await userServices.createUser(newUser)
+   } catch (error) {
+    console.log(error)
+    console.log('something went wrong')
+   }
+   email.onReset()
+   name.onReset()
+   password.onReset()
   }
   
 
@@ -56,20 +78,20 @@ const SignUp = () => {
         <div className="file-upload-wrapper">
           <div className='avatar'>
             {
-              avatar ? <img src={URL.createObjectURL(avatar)} className='img'/>
-                     : <RxAvatar className='w-full h-full'/> 
+              // avatar ? <img src={URL.createObjectURL(avatar)} className='w-full h-full'/>
+              //        : <RxAvatar className='w-full h-full'/> 
             }
           </div>
-          <div className="">
+          <label className="upload-wrapper">
+              <input type="file" placeholder='hello' className="  outline-none bg-gray-600"  onChange={handleFileUpload} accept='.jpg,.png,.jpeg'/>
             <span>Upload a file</span>
-              <input type="file" className="file"  onChange={handleFileUpload} accept='.jpg,.png,.jpeg'/>
-          </div>
+          </label>
         </div>
        <div>
           <Button title="Submit" otherClass=""/>
        </div>
        <div>
-          <p className="text-gray-900 mt-2">Already have an account? <span className="text-blue-600 text-base cursor-pointer">Sign In</span></p>
+          <p className="text-gray-900 mt-2">Already have an account? <Link to={'/login'} className="text-blue-600 text-base cursor-pointer">Sign In</Link></p>
          </div>
       </form>
     </div>
