@@ -6,8 +6,6 @@ const errorHandler = require('./middleware/errorHandler')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
-
-// const fileUpload = require('express-fileupload')
 const app = express()
 
 
@@ -15,8 +13,7 @@ app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({extended:true, limit:'50mb'}))
-app.use('/', express.static('uploads'))
-// app.use(fileUpload({useTempFile:true}))
+app.use('/', express.static('./uploads'))
 
 app.get('/', (request:Request, response:Response)=> {
     response.send('testing')

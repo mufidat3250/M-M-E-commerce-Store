@@ -1,7 +1,7 @@
 require("dotenv").config();
 import { Request, Response, NextFunction } from "express";
 const User = require("../models/users");
-const path = require("path");
+const path = require("node:path");
 
 const bycrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
@@ -12,36 +12,31 @@ const createUser = async (
   next: NextFunction
 ) => {
   const { name, email, password } = request.body;
+  const userEmail = User.findOne({ email });
   if (!name || !email || !password) {
-    response
+    return response
       .status(400)
       .json({ error: "name, email and password must be provided" });
-  }
-  const userEmail = User.findOne({ email });
-  if (userEmail) {
-     response
-      .status(400)
-      .json({ error: "User Already exist create account with another email" });
-  }
-  console.log(request)
+  } 
   const fileName = request.file?.filename;
-//   console.log({fileName})
-//   const fileUrl = path.join(fileName);
-console.log(path)
+  console.log({fileName, request, path})
+  const fileUrl = path.join(fileName);
   const saltRound = 10;
   const passwordHash = await bycrypt.hash(password, saltRound);
-
+console.log({fileUrl}, 'file-url')
   const user = await User.create({
     name,
     email,
     passwordHash,
+    avatar: fileUrl
   });
-  console.log({user})
   const token = JWT.sign(
     { name: user.name, userId: user.id },
     process.env.JWTSECRET
   );
- return response.status(201).json({ name: user.name, email: user.email, token });
+  return response
+    .status(201)
+    .json({ name: user.name, email: user.email, token });
 };
 
 const login = async (
