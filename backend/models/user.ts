@@ -24,6 +24,10 @@ interface IUserSchemaType {
         type:string,
         required:Array<any>,
         minLength:number
+    },
+    avatar:{
+        type:string,
+        required:boolean
     }
 }
 
@@ -49,6 +53,10 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:[true, 'Please provide password'],
         minLength:6
+    },
+    avatar:{
+        type:String,
+        require:[true, "kindly upload an avatar"]
     }
 })
 

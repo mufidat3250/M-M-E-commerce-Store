@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({extended:true, limit:'50mb'}))
 app.use('/', express.static('./uploads'))
 
 app.get('/', (request:Request, response:Response)=> {
-    response.send('testing')
+    response.json({message:'testing'})
 })
 
 app.use('/api/v1/auth', authRouter)

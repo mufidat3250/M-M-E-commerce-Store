@@ -1,8 +1,9 @@
 const router = require('express').Router()
 const {upload}  = require('../multar')
-const {createUser, login} = require('../controllers/auth')
+const {createUser, login, activation} = require('../controllers/auth')
 
-router.post('/create-user', upload.single('file'), createUser)
-router.post('/login', login)
+router.post('/register-user', upload.single('file'), createUser)
+router.post('/activation', activation)
+router.post('/login-user', login)
 
 module.exports = router

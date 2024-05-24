@@ -11,6 +11,8 @@ const errorHandler = (error:any, request:Request, response:Response, next:any) =
         return response.status(400).send({
             error: 'token expired'
         })
+    }else if(error.name === "TypeError" && error.message.includes('The "path" argument')){
+        return response.status(500).json({error:'Upload an image'})
     }
     else if (error.name === 'JsonWebTokenError'){
         return response.status(400).send('jwt malformed')
